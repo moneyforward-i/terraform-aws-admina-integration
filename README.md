@@ -6,11 +6,11 @@ This is a Terraform Module that can be used for AWS Integration provided by Mone
 
 <!-- # Badges -->
 
-[![Github issues](https://img.shields.io/github/issues/umisora/terraform-aws-itmc-integration)](https://github.com/umisora/terraform-aws-itmc-integration/issues)
-[![Github forks](https://img.shields.io/github/forks/umisora/terraform-aws-itmc-integration)](https://github.com/umisora/terraform-aws-itmc-integration/network/members)
-[![Github stars](https://img.shields.io/github/stars/umisora/terraform-aws-itmc-integration)](https://github.com/umisora/terraform-aws-itmc-integration/stargazers)
-[![Github top language](https://img.shields.io/github/languages/top/umisora/terraform-aws-itmc-integration)](https://github.com/umisora/terraform-aws-itmc-integration/)
-[![Github license](https://img.shields.io/github/license/umisora/terraform-aws-itmc-integration)](https://github.com/umisora/terraform-aws-itmc-integration/)
+[![Github issues](https://img.shields.io/github/issues/moneyforward-i/terraform-aws-itmc-integration)](https://github.com/moneyforward-i/terraform-aws-itmc-integration/issues)
+[![Github forks](https://img.shields.io/github/forks/moneyforward-i/terraform-aws-itmc-integration)](https://github.com/moneyforward-i/terraform-aws-itmc-integration/network/members)
+[![Github stars](https://img.shields.io/github/stars/moneyforward-i/terraform-aws-itmc-integration)](https://github.com/moneyforward-i/terraform-aws-itmc-integration/stargazers)
+[![Github top language](https://img.shields.io/github/languages/top/moneyforward-i/terraform-aws-itmc-integration)](https://github.com/moneyforward-i/terraform-aws-itmc-integration/)
+[![Github license](https://img.shields.io/github/license/moneyforward-i/terraform-aws-itmc-integration)](https://github.com/moneyforward-i/terraform-aws-itmc-integration/)
 
 # Tags
 
