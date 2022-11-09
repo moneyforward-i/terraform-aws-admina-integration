@@ -5,7 +5,7 @@ locals {
 
 resource "aws_iam_role" "this" {
   path               = var.role_path
-  name               = "IT Management Cloud Integration Role"
+  name               = "IT-Management-Cloud-Integration-Role"
   description        = "IT Management Cloud Service use this role to integrate with AWS."
   assume_role_policy = data.aws_iam_policy_document.trusted_policy.json
   tags = merge(
@@ -31,27 +31,15 @@ data "aws_iam_policy_document" "trusted_policy" {
     }
   }
 }
-
-resource "aws_iam_role_policy_attachment" "role_policy" {
-  role       = aws_iam_role.this.name
-  policy_arn = aws_iam_role_policy.role_policy.id
-}
-
 resource "aws_iam_role_policy" "role_policy" {
-  name        = "IT Management Cloud Integration Role Policy"
-  description = "IT Management Cloud Integration Role will use this role to integrate with IT Management Cloud"
+  name = "IT-Management-Cloud-Integration-Role-Policy"
+  role = aws_iam_role.this.id
   policy = data.aws_iam_policy_document.role_policy.json
-  tags = merge(
-    var.additional_tags,
-    {
-      "Name" = "IT Management Cloud Integration Role Role"
-    },
-  )
 }
 
 data "aws_iam_policy_document" "role_policy" {
-  sid = "ITMC_Integration"
   statement {
+    sid = "ITMC_Integration_Access_Policy"
     effect = "Allow"
     actions = [
                 "iam:GetAccessKeyLastUsed",
