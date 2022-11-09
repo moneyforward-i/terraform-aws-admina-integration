@@ -1,7 +1,7 @@
-module "integration_role" {
+# This file can be copied and used as it is.
+module "itmc" {
   source  = "terraform-aws-itmc-integration"
 }
-
-output "integration_role_arn" {
+output "itmc_role_arn" {
   value = module.itmc.integration_role_arn
 }

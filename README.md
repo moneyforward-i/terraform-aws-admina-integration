@@ -43,11 +43,11 @@ Some more information can go here.
 Just only add the following code to your Terraform code
 
 ```hcl
-module "integration_role" {
+# This file can be copied and used as it is.
+module "itmc" {
   source  = "terraform-aws-itmc-integration"
 }
-
-output "integration_role_arn" {
+output "itmc_role_arn" {
   value = module.itmc.integration_role_arn
 }
 ```
@@ -76,7 +76,6 @@ No modules. -->
 |------|------|
 | [aws_iam_role.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
 | [aws_iam_role_policy.role_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy) | resource |
-| [aws_iam_role_policy_attachment.role_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
 | [aws_iam_policy_document.role_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [aws_iam_policy_document.trusted_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 ---
