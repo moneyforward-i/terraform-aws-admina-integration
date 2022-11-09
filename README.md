@@ -37,49 +37,7 @@ so you can easily keep it up-to-date by importing it as a Module.
 
 <!--  -->
 
-Some more information can go here.
 
-## Installation
-Just only add the following code to your Terraform code
-
-```hcl
-module "integration_role" {
-  source  = "terraform-aws-itmc-integration"
-}
-
-output "integration_role_arn" {
-  value = module.itmc.integration_role_arn
-}
-```
-To learn how to use Modules in Terraform, let's to see [here](https://developer.hashicorp.com/terraform/language/modules).
-
-## Specifications
-### Inputs
-
-| Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
-| <a name="input_additional_tags"></a> [additional\_tags](#input\_additional\_tags) | A mapping of additional resource tags | `map(string)` | `{}` | no |
-| <a name="input_role_path"></a> [role\_path](#input\_role\_path) | Path to place the Role. | `string` | `"/integration/"` | no |
-<!-- ### Modules
-
-No modules. -->
-### Outputs
-
-| Name | Description |
-|------|-------------|
-| <a name="output_integration_role_arn"></a> [integration\_role\_arn](#output\_integration\_role\_arn) | The output is the Arn of the Role that was created. <br>This value will be able to enter into IntegrationPage on ITMC |
-<!--  -->
-<!--  -->
-### Resources
-
-| Name | Type |
-|------|------|
-| [aws_iam_role.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
-| [aws_iam_role_policy.role_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy) | resource |
-| [aws_iam_role_policy_attachment.role_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
-| [aws_iam_policy_document.role_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
-| [aws_iam_policy_document.trusted_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
----
 <!--  -->
 <!-- END_TF_DOCS -->
 
