@@ -1,0 +1,63 @@
+formatter: markdown
+header-from: main.tf
+
+sections:
+  hide-all: false
+  hide:
+    - providers
+    - requirements
+  show-all: true
+
+content: |-
+
+  <!-- {{ .Header }} -->
+
+  Some more information can go here.
+
+  ## Installation
+  Just only add the following code to your Terraform code
+
+  ```hcl
+  {{ include "./examples/iam-role.tf" }}
+  ```
+  To learn how to use Modules in Terraform, let's to see [here](https://developer.hashicorp.com/terraform/language/modules).
+
+  ## Specifications
+  {{ .Inputs }}
+  <!-- {{ .Modules }} -->
+  {{ .Outputs }}
+  <!-- {{ .Providers }} -->
+  <!-- {{ .Requirements }} -->
+  {{ .Resources }}
+  ---
+  <!-- {{ .Footer }} -->
+
+output:
+  file: "README.md"
+  mode: inject
+  template: |-
+    <!-- BEGIN_TF_DOCS -->
+    {{ .Content }}
+    <!-- END_TF_DOCS -->
+
+output-values:
+  enabled: false
+  from: ""
+
+sort:
+  enabled: false
+
+settings:
+  anchor: true
+  color: true
+  default: true
+  description: false
+  escape: true
+  hide-empty: false
+  html: true
+  indent: 3
+  lockfile: true
+  read-comments: true
+  required: true
+  sensitive: true
+  type: true
