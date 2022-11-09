@@ -44,11 +44,11 @@ Just only add the following code to your Terraform code
 
 ```hcl
 # This file can be copied and used as it is.
-module "itmc" {
-  source  = "terraform-aws-itmc-integration"
+module "itmc-integration" {
+  source  = "moneyforward-i/itmc-integration/aws"
 }
 output "itmc_role_arn" {
-  value = module.itmc.integration_role_arn
+  value = module.itmc-integration.role_arn
 }
 ```
 To learn how to use Modules in Terraform, let's to see [here](https://developer.hashicorp.com/terraform/language/modules).
@@ -67,7 +67,7 @@ No modules. -->
 
 | Name | Description |
 |------|-------------|
-| <a name="output_integration_role_arn"></a> [integration\_role\_arn](#output\_integration\_role\_arn) | The output is the Arn of the Role that was created. <br>This value will be able to enter into IntegrationPage on ITMC |
+| <a name="output_role_arn"></a> [role\_arn](#output\_role\_arn) | The output is the Arn of the Role that was created. <br>This value will be able to enter into IntegrationPage on ITMC |
 <!--  -->
 <!--  -->
 ### Resources
@@ -78,7 +78,6 @@ No modules. -->
 | [aws_iam_role_policy.role_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy) | resource |
 | [aws_iam_policy_document.role_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [aws_iam_policy_document.trusted_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
----
 <!--  -->
 <!-- END_TF_DOCS -->
 

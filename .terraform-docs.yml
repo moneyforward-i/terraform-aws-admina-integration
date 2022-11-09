@@ -29,7 +29,6 @@ content: |-
   <!-- {{ .Providers }} -->
   <!-- {{ .Requirements }} -->
   {{ .Resources }}
-  ---
   <!-- {{ .Footer }} -->
 
 output:
