@@ -4,7 +4,12 @@
 
 This is a Terraform Module that can be used for AWS Integration provided by Money Forward i.
 
+https://registry.terraform.io/modules/moneyforward-i/itmc-integration/aws/latest
+
+
 <!-- # Badges -->
+[![Latest Rlease](https://badgen.net/github/release/moneyforward-i/terraform-aws-itmc-integration?icon=github&color=cyan)](https://github.com/moneyforward-i/terraform-aws-itmc-integration/releases/latest)
+[![Terraform Regstly](https://badgen.net/badge/icon/available?icon=terraform&label=registry&color=cyan)](https://registry.terraform.io/modules/moneyforward-i/itmc-integration/aws/latest)
 
 [![Github issues](https://img.shields.io/github/issues/moneyforward-i/terraform-aws-itmc-integration)](https://github.com/moneyforward-i/terraform-aws-itmc-integration/issues)
 [![Github forks](https://img.shields.io/github/forks/moneyforward-i/terraform-aws-itmc-integration)](https://github.com/moneyforward-i/terraform-aws-itmc-integration/network/members)
