@@ -55,6 +55,9 @@ module "itmc-integration" {
 output "itmc_role_arn" {
   value = module.itmc-integration.role_arn
 }
+output "itmc_role_external_id" {
+  value = module.itmc-integration.external_id
+}
 ```
 To learn how to use Modules in Terraform, let's to see [here](https://developer.hashicorp.com/terraform/language/modules).
 
@@ -73,6 +76,7 @@ No modules. -->
 | Name | Description |
 |------|-------------|
 | <a name="output_role_arn"></a> [role\_arn](#output\_role\_arn) | The output is the Arn of the Role that was created. <br>This value will be able to enter into IntegrationPage on ITMC |
+| <a name="output_external_id"></a> [external\_id](#output\_external\_id) | The output is the External ID of the Role that was created. <br>This value will be able to enter into IntegrationPage on ITMC |
 <!--  -->
 <!--  -->
 ### Resources
@@ -81,6 +85,7 @@ No modules. -->
 |------|------|
 | [aws_iam_role.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
 | [aws_iam_role_policy.role_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy) | resource |
+| [random_id.extrnal_id](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/id) | resource |
 | [aws_iam_policy_document.role_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [aws_iam_policy_document.trusted_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 <!--  -->
