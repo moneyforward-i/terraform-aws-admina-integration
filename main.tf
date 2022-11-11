@@ -39,7 +39,7 @@ resource "aws_iam_role_policy" "role_policy" {
 
 data "aws_iam_policy_document" "role_policy" {
   statement {
-    sid = "ITMC_Integration_Access_Policy"
+    sid = "IntegrationAccessPolicy"
     effect = "Allow"
     actions = [
                 "iam:GetAccessKeyLastUsed",
