@@ -1,7 +1,11 @@
 locals {
-  extrnal_id = "money-forward-i"
+  extrnal_id = random_id.extrnal_id.id
   integration_id = "162001151631"
 }
+resource "random_id" "extrnal_id" {
+  byte_length = 32
+}
+
 
 resource "aws_iam_role" "this" {
   path               = var.role_path
