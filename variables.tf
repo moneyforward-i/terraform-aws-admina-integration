@@ -5,8 +5,13 @@ variable "additional_tags" {
 }
 
 variable "role_path" {
-  type = string
-  default = "/integration/"
+  type        = string
+  default     = "/integration/"
   description = "Path to place the Role."
 }
 
+variable "read_only" {
+  type        = bool
+  default     = false
+  description = "If true, the role will be read only."
+}

@@ -18,7 +18,7 @@ content: |-
   Just only add the following code to your Terraform code
 
   ```hcl
-  {{ include "./examples/itmc_integration.tf" }}
+  {{ include "./examples/admina_integration.tf" }}
   ```
   To learn how to use Modules in Terraform, let's to see [here](https://developer.hashicorp.com/terraform/language/modules).
 

@@ -1,5 +1,5 @@
 locals {
-  extrnal_id = random_id.extrnal_id.id
+  extrnal_id     = random_id.extrnal_id.id
   integration_id = "162001151631"
 }
 resource "random_id" "extrnal_id" {
@@ -9,13 +9,13 @@ resource "random_id" "extrnal_id" {
 
 resource "aws_iam_role" "this" {
   path               = var.role_path
-  name               = "IT-Management-Cloud-Integration-Role"
-  description        = "IT Management Cloud Service use this role to integrate with AWS."
+  name               = "Admina-Integration-Role"
+  description        = "Admina Service use this role to integrate with AWS."
   assume_role_policy = data.aws_iam_policy_document.trusted_policy.json
   tags = merge(
     var.additional_tags,
     {
-      "Name" = "IT Management Cloud Integration Role"
+      "Name" = "Admina Integration Role"
     },
   )
 }
@@ -36,36 +36,62 @@ data "aws_iam_policy_document" "trusted_policy" {
   }
 }
 resource "aws_iam_role_policy" "role_policy" {
-  name = "IT-Management-Cloud-Integration-Role-Policy"
-  role = aws_iam_role.this.id
-  policy = data.aws_iam_policy_document.role_policy.json
+  name   = "Admina-Integration-Role-Policy"
+  role   = aws_iam_role.this.id
+  policy = var.read_only ? data.aws_iam_policy_document.read_only_role_policy.json : data.aws_iam_policy_document.role_policy.json
 }
 
 data "aws_iam_policy_document" "role_policy" {
   statement {
-    sid = "IntegrationAccessPolicy"
+    sid    = "IntegrationAccessPolicy"
     effect = "Allow"
     actions = [
-                "iam:GetAccessKeyLastUsed",
-                "iam:ListAccessKeys",
-                "iam:ListAttachedUserPolicies",
-                "iam:ListGroupsForUser",
-                "iam:ListMFADevices",
-                "iam:ListRolePolicies",
-                "iam:ListRoles",
-                "iam:ListUsers",
-                "iam:ListUserTags",
-                "iam:DeleteUser",
-                "iam:DeleteAccessKey",
-                "iam:DeleteRole",
-                "iam:ListAttachedRolePolicies",
-                "iam:DetachRolePolicy",
-                "iam:DeleteLoginProfile",
-                "iam:ListAttachedUserPolicies",
-                "iam:DetachUserPolicy",
-                "account:GetContactInformation"
+      "iam:GetAccessKeyLastUsed",
+      "iam:ListAccessKeys",
+      "iam:ListAttachedUserPolicies",
+      "iam:ListGroupsForUser",
+      "iam:ListMFADevices",
+      "iam:ListRolePolicies",
+      "iam:ListRoles",
+      "iam:ListUsers",
+      "iam:ListUserTags",
+      "iam:DeleteUser",
+      "iam:DeleteAccessKey",
+      "iam:DeleteRole",
+      "iam:ListAttachedRolePolicies",
+      "iam:DetachRolePolicy",
+      "iam:DeleteLoginProfile",
+      "iam:ListAttachedUserPolicies",
+      "iam:DetachUserPolicy",
+      "iam:CreateUser",
+      "iam:TagUser",
+      "iam:ListUserPolicies",
+      "account:GetContactInformation"
     ]
     resources = ["*"]
   }
 }
 
+data "aws_iam_policy_document" "read_only_role_policy" {
+  statement {
+    sid    = "IntegrationAccessPolicy"
+    effect = "Allow"
+    actions = [
+      "iam:GetAccessKeyLastUsed",
+      "iam:ListAccessKeys",
+      "iam:ListAttachedUserPolicies",
+      "iam:ListGroupsForUser",
+      "iam:ListMFADevices",
+      "iam:ListRolePolicies",
+      "iam:ListRoles",
+      "iam:ListUsers",
+      "iam:ListUserTags",
+      "iam:ListAttachedRolePolicies",
+      "iam:ListAttachedUserPolicies",
+      "iam:TagUser",
+      "iam:ListUserPolicies",
+      "account:GetContactInformation"
+    ]
+    resources = ["*"]
+  }
+}
