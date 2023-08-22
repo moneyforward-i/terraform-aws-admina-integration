@@ -45,7 +45,6 @@ so you can easily keep it up-to-date by importing it as a Module.
 Some more information can go here.
 
 ## Installation
-
 Just only add the following code to your Terraform code
 
 ```hcl
@@ -60,44 +59,37 @@ output "admina_role_external_id" {
   value = module.admina-integration.external_id
 }
 ```
-
 To learn how to use Modules in Terraform, let's to see [here](https://developer.hashicorp.com/terraform/language/modules).
 
 ## Specifications
-
 ### Inputs
 
-| Name                                                                           | Description                           | Type          | Default           | Required |
-| ------------------------------------------------------------------------------ | ------------------------------------- | ------------- | ----------------- | :------: |
-| <a name="input_additional_tags"></a> [additional_tags](#input_additional_tags) | A mapping of additional resource tags | `map(string)` | `{}`              |    no    |
-| <a name="input_role_path"></a> [role_path](#input_role_path)                   | Path to place the Role.               | `string`      | `"/integration/"` |    no    |
-| <a name="input_read_only"></a> [read_only](#input_read_only)                   | If true, the role will be read only.  | `bool`        | `false`           |    no    |
-
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_additional_tags"></a> [additional\_tags](#input\_additional\_tags) | A mapping of additional resource tags | `map(string)` | `{}` | no |
+| <a name="input_role_path"></a> [role\_path](#input\_role\_path) | Path to place the Role. | `string` | `"/integration/"` | no |
+| <a name="input_read_only"></a> [read\_only](#input\_read\_only) | If true, the role will be read only. | `bool` | `false` | no |
 <!-- ### Modules
 
 No modules. -->
-
 ### Outputs
 
-| Name                                                                 | Description                                                                                                                     |
-| -------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| <a name="output_role_arn"></a> [role_arn](#output_role_arn)          | The output is the Arn of the Role that was created. <br>This value will be able to enter into IntegrationPage on Admina         |
-| <a name="output_external_id"></a> [external_id](#output_external_id) | The output is the External ID of the Role that was created. <br>This value will be able to enter into IntegrationPage on Admina |
-
+| Name | Description |
+|------|-------------|
+| <a name="output_role_arn"></a> [role\_arn](#output\_role\_arn) | The output is the Arn of the Role that was created. <br>This value will be able to enter into IntegrationPage on Admina |
+| <a name="output_external_id"></a> [external\_id](#output\_external\_id) | The output is the External ID of the Role that was created. <br>This value will be able to enter into IntegrationPage on Admina |
 <!--  -->
 <!--  -->
-
 ### Resources
 
-| Name                                                                                                                                                | Type        |
-| --------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| [aws_iam_role.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role)                                           | resource    |
-| [aws_iam_role_policy.role_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy)                      | resource    |
-| [random_id.extrnal_id](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/id)                                           | resource    |
+| Name | Type |
+|------|------|
+| [aws_iam_role.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
+| [aws_iam_role_policy.role_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy) | resource |
+| [random_id.extrnal_id](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/id) | resource |
 | [aws_iam_policy_document.read_only_role_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
-| [aws_iam_policy_document.role_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document)           | data source |
-| [aws_iam_policy_document.trusted_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document)        | data source |
-
+| [aws_iam_policy_document.role_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
+| [aws_iam_policy_document.trusted_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 <!--  -->
 <!-- END_TF_DOCS -->
 
