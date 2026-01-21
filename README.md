@@ -32,6 +32,53 @@ so you can easily keep it up-to-date by importing it as a Module.
 
 [Integration Support Page](https://support.itmc.i.moneyforward.com/article/dc2mjsw9oy-aws)
 
+# Permission Scope
+
+This module supports two permission scopes to control the level of access granted to the integration role:
+
+| Scope | Description | Use Case |
+|-------|-------------|----------|
+| `full` (default) | Read-write access including provisioning/deprovisioning | Full integration with user lifecycle management |
+| `read` | Read-only access without write permissions | Monitoring and reporting only |
+
+## Permissions by Scope
+
+### Always Included (Both Scopes)
+
+| Service | Permissions | Purpose |
+|---------|-------------|---------|
+| IAM | `GetAccessKeyLastUsed`, `GetRole`, `ListAccessKeys`, `ListAttachedRolePolicies`, `ListAttachedUserPolicies`, `ListGroupsForUser`, `ListMFADevices`, `ListRolePolicies`, `ListRoles`, `ListUserPolicies`, `ListUsers`, `ListUserTags` | User and role aggregation |
+| Account | `GetContactInformation` | Account name retrieval |
+| Identity Store | `ListGroups`, `ListGroupMemberships`, `ListUsers` | IAM Identity Center user/group aggregation |
+| SSO Admin | `DescribePermissionSet`, `ListAccountAssignmentsForPrincipal`, `ListInstances`, `ListPermissionSets` | Permission set information |
+| Organizations | `ListAccounts` | Account listing for Identity Center |
+
+### Full Scope Only (Write Permissions)
+
+| Service | Permissions | Purpose |
+|---------|-------------|---------|
+| IAM | `CreateUser`, `DeleteAccessKey`, `DeleteLoginProfile`, `DeleteRole`, `DeleteUser`, `DetachRolePolicy`, `DetachUserPolicy`, `TagUser` | User provisioning/deprovisioning |
+| Identity Store | `CreateGroupMembership`, `CreateUser`, `DeleteUser` | Identity Center provisioning/deprovisioning |
+
+## Usage Examples
+
+### Full Access (Default - Backward Compatible)
+
+```hcl
+module "itmc-integration" {
+  source = "moneyforward-i/itmc-integration/aws"
+}
+```
+
+### Read-Only Access
+
+```hcl
+module "itmc-integration" {
+  source           = "moneyforward-i/itmc-integration/aws"
+  permission_scope = "read"
+}
+```
+
 
 # About Module
 <!-- 
