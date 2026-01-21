@@ -1,10 +1,20 @@
-# This file can be copied and used as it is.
-module "itmc-integration" {
+# Minimal configuration
+module "itmc-integration-minimal" {
   source = "moneyforward-i/itmc-integration/aws"
 }
-output "itmc_role_arn" {
-  value = module.itmc-integration.role_arn
+
+# Full configuration with default values
+module "itmc-integration-full" {
+  source           = "moneyforward-i/itmc-integration/aws"
+  permission_scope = "full"
+  role_path        = "/integration/"
+  additional_tags  = {}
 }
+
+output "itmc_role_arn" {
+  value = module.itmc-integration-minimal.role_arn
+}
+
 output "itmc_role_external_id" {
-  value = module.itmc-integration.external_id
+  value = module.itmc-integration-minimal.external_id
 }
