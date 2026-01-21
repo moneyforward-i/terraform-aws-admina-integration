@@ -67,6 +67,7 @@ To learn how to use Modules in Terraform, let's to see [here](https://developer.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_additional_tags"></a> [additional\_tags](#input\_additional\_tags) | A mapping of additional resource tags | `map(string)` | `{}` | no |
+| <a name="input_permission_scope"></a> [permission\_scope](#input\_permission\_scope) | Permission scope for the integration role. Use 'full' for read-write access (provisioning/deprovisioning enabled) or 'read' for read-only access. | `string` | `"full"` | no |
 | <a name="input_role_path"></a> [role\_path](#input\_role\_path) | Path to place the Role. | `string` | `"/integration/"` | no |
 <!-- ### Modules
 
