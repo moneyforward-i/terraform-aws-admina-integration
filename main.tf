@@ -10,13 +10,13 @@ resource "random_id" "extrnal_id" {
 
 resource "aws_iam_role" "this" {
   path               = var.role_path
-  name               = "IT-Management-Cloud-Integration-Role"
-  description        = "IT Management Cloud Service use this role to integrate with AWS."
+  name               = "Admina-Integration-Role"
+  description        = "Admina uses this role to integrate with AWS."
   assume_role_policy = data.aws_iam_policy_document.trusted_policy.json
   tags = merge(
     var.additional_tags,
     {
-      "Name" = "IT Management Cloud Integration Role"
+      "Name" = "Admina Integration Role"
     },
   )
 }
@@ -37,7 +37,7 @@ data "aws_iam_policy_document" "trusted_policy" {
 }
 
 resource "aws_iam_role_policy" "role_policy" {
-  name   = "IT-Management-Cloud-Integration-Role-Policy"
+  name   = "Admina-Integration-Role-Policy"
   role   = aws_iam_role.this.id
   policy = data.aws_iam_policy_document.role_policy.json
 }

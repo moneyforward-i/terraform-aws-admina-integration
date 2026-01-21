@@ -1,29 +1,29 @@
-# terraform-aws-itmc-integration
+# terraform-aws-admina-integration
 
 <!-- # Short Description -->
 
-This is a Terraform Module that can be used for AWS Integration provided by Money Forward i.
+This is a Terraform Module that can be used for AWS Integration provided by Money Forward i (Admina).
 
-https://registry.terraform.io/modules/moneyforward-i/itmc-integration/aws/latest
+https://registry.terraform.io/modules/moneyforward-i/admina-integration/aws/latest
 
 
 <!-- # Badges -->
-[![Latest Rlease](https://badgen.net/github/release/moneyforward-i/terraform-aws-itmc-integration?icon=github&color=cyan)](https://github.com/moneyforward-i/terraform-aws-itmc-integration/releases/latest)
-[![Terraform Regstly](https://badgen.net/badge/icon/available?icon=terraform&label=registry&color=cyan)](https://registry.terraform.io/modules/moneyforward-i/itmc-integration/aws/latest)
+[![Latest Rlease](https://badgen.net/github/release/moneyforward-i/terraform-aws-admina-integration?icon=github&color=cyan)](https://github.com/moneyforward-i/terraform-aws-admina-integration/releases/latest)
+[![Terraform Regstly](https://badgen.net/badge/icon/available?icon=terraform&label=registry&color=cyan)](https://registry.terraform.io/modules/moneyforward-i/admina-integration/aws/latest)
 
-[![Github issues](https://img.shields.io/github/issues/moneyforward-i/terraform-aws-itmc-integration)](https://github.com/moneyforward-i/terraform-aws-itmc-integration/issues)
-[![Github forks](https://img.shields.io/github/forks/moneyforward-i/terraform-aws-itmc-integration)](https://github.com/moneyforward-i/terraform-aws-itmc-integration/network/members)
-[![Github stars](https://img.shields.io/github/stars/moneyforward-i/terraform-aws-itmc-integration)](https://github.com/moneyforward-i/terraform-aws-itmc-integration/stargazers)
-[![Github top language](https://img.shields.io/github/languages/top/moneyforward-i/terraform-aws-itmc-integration)](https://github.com/moneyforward-i/terraform-aws-itmc-integration/)
-[![Github license](https://img.shields.io/github/license/moneyforward-i/terraform-aws-itmc-integration)](https://github.com/moneyforward-i/terraform-aws-itmc-integration/)
+[![Github issues](https://img.shields.io/github/issues/moneyforward-i/terraform-aws-admina-integration)](https://github.com/moneyforward-i/terraform-aws-admina-integration/issues)
+[![Github forks](https://img.shields.io/github/forks/moneyforward-i/terraform-aws-admina-integration)](https://github.com/moneyforward-i/terraform-aws-admina-integration/network/members)
+[![Github stars](https://img.shields.io/github/stars/moneyforward-i/terraform-aws-admina-integration)](https://github.com/moneyforward-i/terraform-aws-admina-integration/stargazers)
+[![Github top language](https://img.shields.io/github/languages/top/moneyforward-i/terraform-aws-admina-integration)](https://github.com/moneyforward-i/terraform-aws-admina-integration/)
+[![Github license](https://img.shields.io/github/license/moneyforward-i/terraform-aws-admina-integration)](https://github.com/moneyforward-i/terraform-aws-admina-integration/)
 
 # Tags
 
-`IT Management Cloud` `SaaS Management Platform`
+`Admina` `SaaS Management Platform`
 
 # Advantages
 
-You can easily create a Role to connect to the IT Management Cloud with AWS which was provided by Money Forward i. 
+You can easily create a Role to connect to Admina with AWS which was provided by Money Forward i.
 
 This Terraform Module is maintained regularly by Money Forward i, 
 so you can easily keep it up-to-date by importing it as a Module.
@@ -65,16 +65,16 @@ This module supports two permission scopes to control the level of access grante
 ### Full Access (Default - Backward Compatible)
 
 ```hcl
-module "itmc-integration" {
-  source = "moneyforward-i/itmc-integration/aws"
+module "admina-integration" {
+  source = "moneyforward-i/admina-integration/aws"
 }
 ```
 
 ### Read-Only Access
 
 ```hcl
-module "itmc-integration" {
-  source           = "moneyforward-i/itmc-integration/aws"
+module "admina-integration" {
+  source           = "moneyforward-i/admina-integration/aws"
   permission_scope = "read"
 }
 ```
@@ -96,14 +96,14 @@ Just only add the following code to your Terraform code
 
 ```hcl
 # This file can be copied and used as it is.
-module "itmc-integration" {
-  source  = "moneyforward-i/itmc-integration/aws"
+module "admina-integration" {
+  source  = "moneyforward-i/admina-integration/aws"
 }
-output "itmc_role_arn" {
-  value = module.itmc-integration.role_arn
+output "admina_role_arn" {
+  value = module.admina-integration.role_arn
 }
-output "itmc_role_external_id" {
-  value = module.itmc-integration.external_id
+output "admina_role_external_id" {
+  value = module.admina-integration.external_id
 }
 ```
 To learn how to use Modules in Terraform, let's to see [here](https://developer.hashicorp.com/terraform/language/modules).
@@ -123,8 +123,8 @@ No modules. -->
 
 | Name | Description |
 |------|-------------|
-| <a name="output_role_arn"></a> [role\_arn](#output\_role\_arn) | The output is the Arn of the Role that was created. <br>This value will be able to enter into IntegrationPage on ITMC |
-| <a name="output_external_id"></a> [external\_id](#output\_external\_id) | The output is the External ID of the Role that was created. <br>This value will be able to enter into IntegrationPage on ITMC |
+| <a name="output_role_arn"></a> [role\_arn](#output\_role\_arn) | The output is the Arn of the Role that was created. <br>This value will be able to enter into IntegrationPage on Admina |
+| <a name="output_external_id"></a> [external\_id](#output\_external\_id) | The output is the External ID of the Role that was created. <br>This value will be able to enter into IntegrationPage on Admina |
 <!--  -->
 <!--  -->
 ### Resources
