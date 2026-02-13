@@ -96,15 +96,25 @@ Some more information can go here.
 Just only add the following code to your Terraform code
 
 ```hcl
-# This file can be copied and used as it is.
-module "admina-integration" {
-  source  = "moneyforward-i/admina-integration/aws"
+# Minimal configuration
+module "admina-integration-minimal" {
+  source = "moneyforward-i/admina-integration/aws"
 }
+
+# Full configuration with default values
+module "admina-integration-full" {
+  source           = "moneyforward-i/admina-integration/aws"
+  permission_scope = "full"
+  role_path        = "/integration/"
+  additional_tags  = {}
+}
+
 output "admina_role_arn" {
-  value = module.admina-integration.role_arn
+  value = module.admina-integration-minimal.role_arn
 }
+
 output "admina_role_external_id" {
-  value = module.admina-integration.external_id
+  value = module.admina-integration-minimal.external_id
 }
 ```
 To learn how to use Modules in Terraform, let's to see [here](https://developer.hashicorp.com/terraform/language/modules).
@@ -115,8 +125,8 @@ To learn how to use Modules in Terraform, let's to see [here](https://developer.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_additional_tags"></a> [additional\_tags](#input\_additional\_tags) | A mapping of additional resource tags | `map(string)` | `{}` | no |
-| <a name="input_permission_scope"></a> [permission\_scope](#input\_permission\_scope) | Permission scope for the integration role. Use 'full' for read-write access (provisioning/deprovisioning enabled) or 'read' for read-only access. | `string` | `"full"` | no |
 | <a name="input_role_path"></a> [role\_path](#input\_role\_path) | Path to place the Role. | `string` | `"/integration/"` | no |
+| <a name="input_permission_scope"></a> [permission\_scope](#input\_permission\_scope) | Permission scope for the integration role. Use 'full' for read-write access (provisioning/deprovisioning enabled) or 'read' for read-only access. | `string` | `"full"` | no |
 <!-- ### Modules
 
 No modules. -->
