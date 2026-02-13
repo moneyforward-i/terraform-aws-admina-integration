@@ -1,29 +1,29 @@
-# terraform-aws-itmc-integration
+# terraform-aws-admina-integration
 
 <!-- # Short Description -->
 
-This is a Terraform Module that can be used for AWS Integration provided by Money Forward i.
+This is a Terraform Module that can be used for AWS Integration provided by Money Forward i (Admina).
 
-https://registry.terraform.io/modules/moneyforward-i/itmc-integration/aws/latest
+https://registry.terraform.io/modules/moneyforward-i/admina-integration/aws/latest
 
 
 <!-- # Badges -->
-[![Latest Rlease](https://badgen.net/github/release/moneyforward-i/terraform-aws-itmc-integration?icon=github&color=cyan)](https://github.com/moneyforward-i/terraform-aws-itmc-integration/releases/latest)
-[![Terraform Regstly](https://badgen.net/badge/icon/available?icon=terraform&label=registry&color=cyan)](https://registry.terraform.io/modules/moneyforward-i/itmc-integration/aws/latest)
+[![Latest Rlease](https://badgen.net/github/release/moneyforward-i/terraform-aws-admina-integration?icon=github&color=cyan)](https://github.com/moneyforward-i/terraform-aws-admina-integration/releases/latest)
+[![Terraform Regstly](https://badgen.net/badge/icon/available?icon=terraform&label=registry&color=cyan)](https://registry.terraform.io/modules/moneyforward-i/admina-integration/aws/latest)
 
-[![Github issues](https://img.shields.io/github/issues/moneyforward-i/terraform-aws-itmc-integration)](https://github.com/moneyforward-i/terraform-aws-itmc-integration/issues)
-[![Github forks](https://img.shields.io/github/forks/moneyforward-i/terraform-aws-itmc-integration)](https://github.com/moneyforward-i/terraform-aws-itmc-integration/network/members)
-[![Github stars](https://img.shields.io/github/stars/moneyforward-i/terraform-aws-itmc-integration)](https://github.com/moneyforward-i/terraform-aws-itmc-integration/stargazers)
-[![Github top language](https://img.shields.io/github/languages/top/moneyforward-i/terraform-aws-itmc-integration)](https://github.com/moneyforward-i/terraform-aws-itmc-integration/)
-[![Github license](https://img.shields.io/github/license/moneyforward-i/terraform-aws-itmc-integration)](https://github.com/moneyforward-i/terraform-aws-itmc-integration/)
+[![Github issues](https://img.shields.io/github/issues/moneyforward-i/terraform-aws-admina-integration)](https://github.com/moneyforward-i/terraform-aws-admina-integration/issues)
+[![Github forks](https://img.shields.io/github/forks/moneyforward-i/terraform-aws-admina-integration)](https://github.com/moneyforward-i/terraform-aws-admina-integration/network/members)
+[![Github stars](https://img.shields.io/github/stars/moneyforward-i/terraform-aws-admina-integration)](https://github.com/moneyforward-i/terraform-aws-admina-integration/stargazers)
+[![Github top language](https://img.shields.io/github/languages/top/moneyforward-i/terraform-aws-admina-integration)](https://github.com/moneyforward-i/terraform-aws-admina-integration/)
+[![Github license](https://img.shields.io/github/license/moneyforward-i/terraform-aws-admina-integration)](https://github.com/moneyforward-i/terraform-aws-admina-integration/)
 
 # Tags
 
-`IT Management Cloud` `SaaS Management Platform`
+`Admina` `SaaS Management Platform`
 
 # Advantages
 
-You can easily create a Role to connect to the IT Management Cloud with AWS which was provided by Money Forward i. 
+You can easily create a Role to connect to Admina with AWS which was provided by Money Forward i.
 
 This Terraform Module is maintained regularly by Money Forward i, 
 so you can easily keep it up-to-date by importing it as a Module.
@@ -31,6 +31,54 @@ so you can easily keep it up-to-date by importing it as a Module.
 [Official page(JP)](https://i.moneyforward.com/) [(EN)](https://i.moneyforward.com/us/)
 
 [Integration Support Page](https://support.itmc.i.moneyforward.com/article/dc2mjsw9oy-aws)
+
+# Permission Scope
+
+This module supports two permission scopes to control the level of access granted to the integration role:
+
+| Scope | Description | Use Case |
+|-------|-------------|----------|
+| `full` (default) | Read-write access including provisioning/deprovisioning | Full integration with user lifecycle management |
+| `read` | Read-only access without write permissions | Monitoring and reporting only |
+
+## Permissions by Scope
+
+### Always Included (Both Scopes)
+
+| Service | Permissions | Purpose |
+|---------|-------------|---------|
+| IAM | `GetAccessKeyLastUsed`, `GetRole`, `ListAccessKeys`, `ListAttachedRolePolicies`, `ListAttachedUserPolicies`, `ListGroupsForUser`, `ListMFADevices`, `ListRolePolicies`, `ListRoles`, `ListUserPolicies`, `ListUsers`, `ListUserTags` | User and role aggregation |
+| Account | `GetContactInformation` | Account name retrieval |
+| Identity Store | `ListGroups`, `ListGroupMemberships`, `ListUsers` | IAM Identity Center user/group aggregation |
+| SSO Admin | `DescribePermissionSet`, `ListAccountAssignments`, `ListAccountAssignmentsForPrincipal`, `ListInstances`, `ListPermissionSets` | Permission set information |
+| Organizations | `ListAccounts` | Account listing for Identity Center |
+
+### Full Scope Only (Write Permissions)
+
+| Service | Permissions | Purpose |
+|---------|-------------|---------|
+| IAM | `CreateUser`, `DeleteAccessKey`, `DeleteLoginProfile`, `DeleteRole`, `DeleteUser`, `DetachRolePolicy`, `DetachUserPolicy`, `TagUser` | User provisioning/deprovisioning |
+| Identity Store | `CreateGroupMembership`, `CreateUser`, `DeleteGroupMembership`, `DeleteUser` | Identity Center provisioning/deprovisioning |
+| SSO Admin | `DeleteAccountAssignment` | Remove permission set assignments during deprovisioning |
+
+## Usage Examples
+
+### Full Access (Default - Backward Compatible)
+
+```hcl
+module "admina-integration" {
+  source = "moneyforward-i/admina-integration/aws"
+}
+```
+
+### Read-Only Access
+
+```hcl
+module "admina-integration" {
+  source           = "moneyforward-i/admina-integration/aws"
+  permission_scope = "read"
+}
+```
 
 
 # About Module
@@ -48,15 +96,25 @@ Some more information can go here.
 Just only add the following code to your Terraform code
 
 ```hcl
-# This file can be copied and used as it is.
-module "itmc-integration" {
-  source  = "moneyforward-i/itmc-integration/aws"
+# Minimal configuration
+module "admina-integration-minimal" {
+  source = "moneyforward-i/admina-integration/aws"
 }
-output "itmc_role_arn" {
-  value = module.itmc-integration.role_arn
+
+# Full configuration with default values
+module "admina-integration-full" {
+  source           = "moneyforward-i/admina-integration/aws"
+  permission_scope = "full"
+  role_path        = "/integration/"
+  additional_tags  = {}
 }
-output "itmc_role_external_id" {
-  value = module.itmc-integration.external_id
+
+output "admina_role_arn" {
+  value = module.admina-integration-minimal.role_arn
+}
+
+output "admina_role_external_id" {
+  value = module.admina-integration-minimal.external_id
 }
 ```
 To learn how to use Modules in Terraform, let's to see [here](https://developer.hashicorp.com/terraform/language/modules).
@@ -68,6 +126,7 @@ To learn how to use Modules in Terraform, let's to see [here](https://developer.
 |------|-------------|------|---------|:--------:|
 | <a name="input_additional_tags"></a> [additional\_tags](#input\_additional\_tags) | A mapping of additional resource tags | `map(string)` | `{}` | no |
 | <a name="input_role_path"></a> [role\_path](#input\_role\_path) | Path to place the Role. | `string` | `"/integration/"` | no |
+| <a name="input_permission_scope"></a> [permission\_scope](#input\_permission\_scope) | Permission scope for the integration role. Use 'full' for read-write access (provisioning/deprovisioning enabled) or 'read' for read-only access. | `string` | `"full"` | no |
 <!-- ### Modules
 
 No modules. -->
@@ -75,8 +134,8 @@ No modules. -->
 
 | Name | Description |
 |------|-------------|
-| <a name="output_role_arn"></a> [role\_arn](#output\_role\_arn) | The output is the Arn of the Role that was created. <br>This value will be able to enter into IntegrationPage on ITMC |
-| <a name="output_external_id"></a> [external\_id](#output\_external\_id) | The output is the External ID of the Role that was created. <br>This value will be able to enter into IntegrationPage on ITMC |
+| <a name="output_role_arn"></a> [role\_arn](#output\_role\_arn) | The output is the Arn of the Role that was created. <br>This value will be able to enter into IntegrationPage on Admina |
+| <a name="output_external_id"></a> [external\_id](#output\_external\_id) | The output is the External ID of the Role that was created. <br>This value will be able to enter into IntegrationPage on Admina |
 <!--  -->
 <!--  -->
 ### Resources
