@@ -110,6 +110,7 @@ data "aws_iam_policy_document" "role_policy" {
       actions = [
         "identitystore:CreateGroupMembership",
         "identitystore:CreateUser",
+        "identitystore:DeleteGroupMembership",
         "identitystore:DeleteUser",
       ]
       resources = ["*"]
@@ -121,11 +122,24 @@ data "aws_iam_policy_document" "role_policy" {
     effect = "Allow"
     actions = [
       "sso:DescribePermissionSet",
+      "sso:ListAccountAssignments",
       "sso:ListAccountAssignmentsForPrincipal",
       "sso:ListInstances",
       "sso:ListPermissionSets",
     ]
     resources = ["*"]
+  }
+
+  dynamic "statement" {
+    for_each = local.is_full_scope ? [1] : []
+    content {
+      sid    = "SSOAdminWriteAccess"
+      effect = "Allow"
+      actions = [
+        "sso:DeleteAccountAssignment",
+      ]
+      resources = ["*"]
+    }
   }
 
   statement {

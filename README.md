@@ -50,7 +50,7 @@ This module supports two permission scopes to control the level of access grante
 | IAM | `GetAccessKeyLastUsed`, `GetRole`, `ListAccessKeys`, `ListAttachedRolePolicies`, `ListAttachedUserPolicies`, `ListGroupsForUser`, `ListMFADevices`, `ListRolePolicies`, `ListRoles`, `ListUserPolicies`, `ListUsers`, `ListUserTags` | User and role aggregation |
 | Account | `GetContactInformation` | Account name retrieval |
 | Identity Store | `ListGroups`, `ListGroupMemberships`, `ListUsers` | IAM Identity Center user/group aggregation |
-| SSO Admin | `DescribePermissionSet`, `ListAccountAssignmentsForPrincipal`, `ListInstances`, `ListPermissionSets` | Permission set information |
+| SSO Admin | `DescribePermissionSet`, `ListAccountAssignments`, `ListAccountAssignmentsForPrincipal`, `ListInstances`, `ListPermissionSets` | Permission set information |
 | Organizations | `ListAccounts` | Account listing for Identity Center |
 
 ### Full Scope Only (Write Permissions)
@@ -58,7 +58,8 @@ This module supports two permission scopes to control the level of access grante
 | Service | Permissions | Purpose |
 |---------|-------------|---------|
 | IAM | `CreateUser`, `DeleteAccessKey`, `DeleteLoginProfile`, `DeleteRole`, `DeleteUser`, `DetachRolePolicy`, `DetachUserPolicy`, `TagUser` | User provisioning/deprovisioning |
-| Identity Store | `CreateGroupMembership`, `CreateUser`, `DeleteUser` | Identity Center provisioning/deprovisioning |
+| Identity Store | `CreateGroupMembership`, `CreateUser`, `DeleteGroupMembership`, `DeleteUser` | Identity Center provisioning/deprovisioning |
+| SSO Admin | `DeleteAccountAssignment` | Remove permission set assignments during deprovisioning |
 
 ## Usage Examples
 
